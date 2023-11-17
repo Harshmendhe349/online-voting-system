@@ -6,26 +6,25 @@ const AdminPage = () => {
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");
+  const [showForm, setShowForm] = useState(false); // State to control form visibility
 
   const handleCreateElection = async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault();
 
     try {
-      // Basic input validation
       if (!title || !date || !description) {
         setError("Please fill in all fields");
         return;
       }
 
-      setError(""); // Clear previous error, if any
+      setError("");
 
       await axios.post("/api/elections", {
         title,
         date,
-        description
+        description,
       });
 
-      // Optionally, add logic to handle success (e.g., show a success message or clear the form)
       setTitle("");
       setDate("");
       setDescription("");
@@ -35,29 +34,71 @@ const AdminPage = () => {
     }
   };
 
+  const toggleForm = () => {
+    setShowForm(!showForm); // Toggles form visibility
+  };
+
   return (
-    <div>
+    <div style={{ margin: "20px" }}>
       <h1>Admin Page</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleCreateElection}>
-        <input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
-        <textarea
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        ></textarea>
-        <button type="submit">Create Election</button>
-      </form>
+      <button
+        style={{
+          padding: "8px 16px",
+          backgroundColor: "#007bff",
+          color: "white",
+          border: "none",
+          borderRadius: "4px",
+          cursor: "pointer",
+        }}
+        onClick={toggleForm}
+      >
+        Create Election
+      </button>
+      {showForm && (
+        <div style={{ marginTop: "20px" }}>
+          {error && <p style={{ color: "red" }}>{error}</p>}
+          <form onSubmit={handleCreateElection}>
+            <input
+              type="text"
+              placeholder="Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              style={{ display: "block", margin: "8px 0", padding: "8px" }}
+            />
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              style={{ display: "block", margin: "8px 0", padding: "8px" }}
+            />
+            <textarea
+              placeholder="Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              style={{
+                display: "block",
+                margin: "8px 0",
+                padding: "8px",
+                minHeight: "100px",
+              }}
+            ></textarea>
+            <button
+              type="submit"
+              style={{
+                padding: "8px 16px",
+                backgroundColor: "#28a745",
+                color: "white",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+                marginTop: "10px",
+              }}
+            >
+              Create Election
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };
