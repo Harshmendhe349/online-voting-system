@@ -7,7 +7,7 @@ import Signup from "./components/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { UserAuthContextProvider } from "./context/UserAuthContext";
 import PhoneSignin from "./components/PhoneSignin";
-import AdminPage from "./components/Admin.js";
+import AdminPage from "./components/Admin"; 
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
               <Route path="/" element={<Login />} />
               <Route path="/phonesignin" element={<PhoneSignin />} />
               <Route path="/signup" element={<Signup />} />
-              <Route path="/admin" element={<AdminPage />} />
+              <Route path="/adminPage" element={<AdminPage />} /> {/* Update path for AdminPage */}
             </Routes>
           </UserAuthContextProvider>
         </Col>
