@@ -1,0 +1,63 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+  background-color: #DDD0C8;
+}
+
+/* Apply a global box-sizing border-box to all elements */
+* {
+  box-sizing: inherit;
+}
+
+/* Set up a basic container to center content */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Apply some basic styles to headers */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: bold;
+}
+
+/* Apply some basic styles to links */
+a {
+  text-decoration: none;
+  color: #3498db; /* Use your preferred link color */
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Apply some basic styles to buttons */
+button {
+  cursor: pointer;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+/* Apply some basic styles to images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Apply some basic styles to input elements */
+input,
+select,
+textarea {
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Add additional styles as needed for your specific application */
