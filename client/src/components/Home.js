@@ -163,10 +163,10 @@ const Home = () => {
                     <p>Votes: {election.votes}</p>
                   ) : (
                     <Button
-                      variant="primary"
+                      
                       onClick={() => handleVote(election.title, index)}
                       className="mt-3"
-                      style={{ margin: "0.5rem" }}
+                      style={{ margin: "0.5rem",backgroundColor: 'blue', border: 'none',borderRadius: '4px',cursor: 'pointer' }}
                     >
                       Vote
                     </Button>
@@ -177,14 +177,14 @@ const Home = () => {
                       variant="danger"
                       onClick={() => handleDeleteElection(election._id)}
                       className="mt-3"
-                      style={{ margin: "0.5rem" }}
+                      style={{ margin: "0.5rem", backgroundColor: 'red', border: 'none',borderRadius: '4px',cursor: 'pointer' }}
                     >
                       Delete
                     </Button>
 
                   )}
 
-                  <Button onClick={() => handleElectionClick(election)}  style={{ margin: "0.4rem 0.2rem",  }}>
+                  <Button onClick={() => handleElectionClick(election)}  style={{ margin: "0.4rem 0.2rem", backgroundColor: 'blue', border: 'none',borderRadius: '4px',cursor: 'pointer' }}>
                     View Details
                   </Button>
 
