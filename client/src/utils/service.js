@@ -1,4 +1,4 @@
-const baseUrl = "https://online-voting-system-backend-wheat.vercel.app/api";
+const baseUrl = "https://online-voting-system-backend.onrender.com/api";
 
 const getRequest = async (url) => {
   const response = await fetch(url);
