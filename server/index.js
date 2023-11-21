@@ -12,7 +12,7 @@ require("dotenv").config();
 app.use(bodyParser.json());
 
 app.use(cors({
-  origin: ["https://online-voting-system-frontend-drab.vercel.app"] // Replace with your client's URL
+  origin: ["https://online-voting-system-frontend-drab.vercel.app/"] // Replace with your client's URL
   methods: ['GET', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
