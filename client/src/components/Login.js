@@ -90,13 +90,13 @@ const Login = () => {
           </Form.Group>
 
           <div style={{ textAlign: "center", padding: '5px 10px'  }}>
-            <Button variant="primary" type="submit" style={{ padding: "0.5rem 1rem" }}>
+            <Button variant="primary" type="submit" style={{ padding: "0.5rem 1rem",backgroundColor: 'blue', border: 'none',borderRadius: '4px',cursor: 'pointer' }}>
               Log In
             </Button>
           </div>
         </Form>
         <div style={{ textAlign: "center", padding: "22px 0", paddingBottom: "10px" }}>
-          <Button onClick={handlePhoneSignIn} variant="success" type="button" style={{ padding: "0.5rem 1rem" }}>
+          <Button onClick={handlePhoneSignIn} variant="success" type="button" style={{ padding: "0.5rem 1rem",backgroundColor: 'green', border: 'none',borderRadius: '4px',cursor: 'pointer' }}>
             Sign In with Phone Number
           </Button>
         </div>
