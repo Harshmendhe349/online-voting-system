@@ -1,4 +1,4 @@
-const baseUrl = "https://online-voting-system-blush.vercel.app";
+const baseUrl = "https://online-voting-system-blush.vercel.app/api";
 
 const getRequest = async (url) => {
   const response = await fetch(url);
