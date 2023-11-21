@@ -17,9 +17,9 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
-app.get("/", (req, res) => {
-  res.json("Hello");
-})
+// app.get("/", (req, res) => {
+//   res.json("Hello");
+// })
 app.options('*', cors()); // Enable preflight for all routes
 
 const uri = process.env.MONGODB_URI;
