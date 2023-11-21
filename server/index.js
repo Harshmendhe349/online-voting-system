@@ -12,10 +12,14 @@ require("dotenv").config();
 app.use(bodyParser.json());
 
 app.use(cors({
-  origin: 'http://localhost:3000', // Replace with your client's URL
+  origin: ["https://online-voting-system-blush.vercel.app/"] // Replace with your client's URL
   methods: ['GET', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
+app.get("/", (req, res) => {
+  res.json("Hello");
+})
 app.options('*', cors()); // Enable preflight for all routes
 
 const uri = process.env.MONGODB_URI;
