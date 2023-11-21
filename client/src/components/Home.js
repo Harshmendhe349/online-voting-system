@@ -174,7 +174,6 @@ const Home = () => {
                   {user && (user.email === election.created_by || user.phoneNumber === election.created_by) && ( // Check if the logged-in user is the creator
 
                     <Button
-                      variant="danger"
                       onClick={() => handleDeleteElection(election._id)}
                       className="mt-3"
                       style={{ margin: "0.5rem", backgroundColor: 'red', border: 'none',borderRadius: '4px',cursor: 'pointer' }}
@@ -203,7 +202,7 @@ const Home = () => {
         </div>
 
         <div className="mt-6">
-          <Button variant="primary" onClick={toggleModal}>Create Election</Button>
+          <Button onClick={toggleModal} style={{backgroundColor: 'blue', border: 'none',borderRadius: '4px',cursor: 'pointer'}}>Create Election</Button>
 
           <Modal show={showModal} onHide={toggleModal}>
             <Modal.Header closeButton>
