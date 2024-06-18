@@ -2,28 +2,24 @@ const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 
 const app = express();
-
-require("dotenv").config();
-
 
 // Middleware
 app.use(bodyParser.json());
 
 app.use(cors({
-  origin: ["https://online-voting-system-frontend-drab.vercel.app"], // Replace with your client's URL
+  origin: 'http://localhost:3000', // Replace with your client's URL
   methods: ['GET', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
-
-// app.get("/", (req, res) => {
-//   res.json("Hello");
-// })
 app.options('*', cors()); // Enable preflight for all routes
 
 const uri = process.env.MONGODB_URI;
+
 // Connect to MongoDB
+mongoose.set('strictQuery', false);
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -38,16 +34,30 @@ db.once('open', function() {
   console.log('Connected to MongoDB');
 });
 
-app.post('/api/user', async (req, res) => {
-  const { username, uid } = req.body; // Modify according to the user data structure sent from frontend
+// Define User Model outside of routes
+const User = mongoose.model('User', {
+  username: String,
+  uid: String,
+});
 
+// Define Election Model outside of routes
+const electionSchema = new mongoose.Schema({
+  title: String,
+  description: String,
+  created_by: String,
+  date: String,
+  votes: Number,
+  link: String,
+});
+
+const Election = mongoose.model('Election', electionSchema);
+
+// Routes
+app.post('/api/user', async (req, res) => {
+  const { username, uid } = req.body;
 
   try {
-    const User = mongoose.model('User', {
-      username: String,
-      uid: String,
-});
-    const existingUser = await User.findOne({ uid }); // Check if user with provided UID already exists
+    const existingUser = await User.findOne({ uid });
 
     if (existingUser) {
       return res.status(400).json({ message: 'User with this UID already exists' });
@@ -64,18 +74,6 @@ app.post('/api/user', async (req, res) => {
   }
 });
 
-// Create a Mongoose schema and model for elections
-const electionSchema = new mongoose.Schema({
-  title: String,
-  description: String,
-  created_by:String,
-  date: String,
-  votes: Number,
-  link: String,
-});
-
-const Election = mongoose.model('Election', electionSchema);
-
 // GET request to fetch elections
 app.get('/api/elections', async (req, res) => {
   try {
@@ -88,7 +86,7 @@ app.get('/api/elections', async (req, res) => {
 
 // POST request to create a new election
 app.post('/api/elections', async (req, res) => {
-  const { title, date,description,created_by,link } = req.body;
+  const { title, date, description, created_by, link } = req.body;
 
   try {
     const newElection = new Election({
@@ -97,7 +95,7 @@ app.post('/api/elections', async (req, res) => {
       description,
       created_by,
       votes: 0,
-      link, // Assuming a new election starts with zero votes/
+      link,
     });
 
     await newElection.save();
@@ -107,7 +105,6 @@ app.post('/api/elections', async (req, res) => {
   }
 });
 
-// POST request to vote for a specific election
 // POST request to vote for an election
 app.post('/api/vote', async (req, res) => {
   const { title } = req.body;
@@ -119,7 +116,6 @@ app.post('/api/vote', async (req, res) => {
       return res.status(404).json({ message: 'Election not found' });
     }
 
-    // Increment the votes for the found election
     election.votes += 1;
     await election.save();
 

@@ -1,4 +1,4 @@
-const baseUrl = "https://online-voting-system-backend.onrender.com/api";
+const baseUrl = "http://localhost:5000/api";
 
 const getRequest = async (url) => {
   const response = await fetch(url);
@@ -18,7 +18,7 @@ const postRequest = async (url, body) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(body),
-    mode: "cors", // Explicitly set CORS mode
+    mode: "cors", 
   });
 
   if (!response.ok) {

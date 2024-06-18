@@ -163,10 +163,10 @@ const Home = () => {
                     <p>Votes: {election.votes}</p>
                   ) : (
                     <Button
-                      
+                      variant="primary"
                       onClick={() => handleVote(election.title, index)}
                       className="mt-3"
-                      style={{ margin: "0.5rem",backgroundColor: 'blue', border: 'none',borderRadius: '4px',cursor: 'pointer' }}
+                      style={{ margin: "0.5rem" }}
                     >
                       Vote
                     </Button>
@@ -174,16 +174,17 @@ const Home = () => {
                   {user && (user.email === election.created_by || user.phoneNumber === election.created_by) && ( // Check if the logged-in user is the creator
 
                     <Button
+                      variant="danger"
                       onClick={() => handleDeleteElection(election._id)}
                       className="mt-3"
-                      style={{ margin: "0.5rem", backgroundColor: 'red', border: 'none',borderRadius: '4px',cursor: 'pointer' }}
+                      style={{ margin: "0.5rem" }}
                     >
                       Delete
                     </Button>
 
                   )}
 
-                  <Button onClick={() => handleElectionClick(election)}  style={{ margin: "0.4rem 0.2rem", backgroundColor: 'blue', border: 'none',borderRadius: '4px',cursor: 'pointer' }}>
+                  <Button onClick={() => handleElectionClick(election)}  style={{ margin: "0.4rem 0.2rem",  }}>
                     View Details
                   </Button>
 
@@ -202,7 +203,7 @@ const Home = () => {
         </div>
 
         <div className="mt-6">
-          <Button onClick={toggleModal} style={{backgroundColor: 'blue', border: 'none',borderRadius: '4px',cursor: 'pointer'}}>Create Election</Button>
+          <Button variant="primary" onClick={toggleModal}>Create Election</Button>
 
           <Modal show={showModal} onHide={toggleModal}>
             <Modal.Header closeButton>
